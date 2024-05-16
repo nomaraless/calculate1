@@ -7,27 +7,31 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CalculateController {
-    private CalculateService calculateService = new CalculateService();
+    private CalculateService calculateService;
+    public CalculateController(CalculateService calculateService) {
+        this.calculateService = calculateService;
+    }
+
     @RequestMapping
     public String calculate() {
         return calculateService.calculate();
     }
 
     @GetMapping(path = "/plus")
-    public double plus(@RequestParam(value = "num1", required = false) String a, @RequestParam(value = "num2") String b) {
+    public String plus(@RequestParam(value = "num1", required = false) String a, @RequestParam(value = "num2") String b) {
         return calculateService.plus(a, b);
     }
 
     @GetMapping(path = "/minus")
-    public double minus(@RequestParam(value = "num1", required = false) String a, @RequestParam(value = "num2", required = false) String b){
+    public String minus(@RequestParam(value = "num1", required = false) String a, @RequestParam(value = "num2", required = false) String b){
         return calculateService.minus(a, b);
     }
     @GetMapping(path = "/multiply")
-    public double multyply(@RequestParam(value = "num1", required = false) String a, @RequestParam(value = "num2", required = false) String b) {
+    public String multyply(@RequestParam(value = "num1", required = false) String a, @RequestParam(value = "num2", required = false) String b) {
         return calculateService.multyply(a, b);
     }
     @GetMapping(path = "/divide")
-    public double divide(@RequestParam(value = "num1", required = false) String a, @RequestParam(value = "num2", required = false) String b) {
+    public String divide(@RequestParam(value = "num1", required = false) String a, @RequestParam(value = "num2", required = false) String b) {
         return calculateService.divide(a, b);
     }
 }
