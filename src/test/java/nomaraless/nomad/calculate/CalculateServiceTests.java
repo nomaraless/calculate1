@@ -14,33 +14,29 @@ public class CalculateServiceTests {
 
     @Test
     public void plusTest() {
+        String a = "1";
+        String b = "10";
         double expected = 11.0;
-        double actual = Integer.parseInt(String.valueOf(service.plus("1.0", "10.0")));
+        double actual = (double) service.plus(a, b);
         assertEquals(actual, expected);
     }
     @ParameterizedTest
     @CsvSource(value = {"1,2,3", "5,10,15", "10,20,30"})
-    void plusTest1(String num1, String num2, Integer expected) {
-        int result = Integer.parseInt((String) service.plus(num1, num2));
-        assertEquals(expected, result);
-    }
-    @ParameterizedTest
-    @CsvSource(value = {"3,2,1", "15,10,5", "30,20,10"})
-    void plusTest2(String num1, String num2, Integer expected) {
-        int result = Integer.parseInt((String) service.plus(num1, num2));
+    void plusTest1(String num1, String num2, int expected) {
+        double result = (double) service.plus(num1, num2);
         assertEquals(expected, result);
     }
 
     @ParameterizedTest
     @CsvSource(value = {"3,2,1", "15,10,5", "30,20,10"})
-    void minusTest(String num1, String num2, Integer expected) {
-        int result = Integer.parseInt((String) service.minus(num1, num2));
+    void minusTest(String num1, String num2, int expected) {
+        double result = (double) service.minus(num1, num2);
         assertEquals(expected, result);
     }
     @ParameterizedTest
     @CsvSource(value = {"3,2,6", "15,10,150", "30,20,600"})
-    void multiplyTest(String num1, String num2, Integer expected) {
-        int result = Integer.parseInt((String) service.multiyply(num1, num2));
+    void multiplyTest(String num1, String num2, int expected) {
+        double result = (double) service.multiyply(num1, num2);
         assertEquals(expected, result);
     }
     @ParameterizedTest
